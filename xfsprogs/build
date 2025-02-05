@@ -1,0 +1,27 @@
+#!/bin/sh -e
+
+sed 's/bash/sh/' install-sh > _
+mv -f _ install-sh
+chmod +x install-sh
+
+export DEBUG=-DNDEBUG
+export OPTIMIZER="-flto=auto"
+export CFLAGS="$CFLAGS -DOVERRIDE_SYSTEM_STATX"
+
+./configure \
+    --prefix=/usr \
+    --sbindir=/usr/bin \
+    --enable-gettext=no \
+    --enable-editline=yes
+
+make V=1 headers libhandle
+make V=1
+
+make -j1 \
+    DIST_ROOT="$1" \
+    PKG_ROOT_SBIN_DIR=/usr/bin \
+    install
+
+# empty directories
+rm -rf "$1/usr/include" "$1/usr/share/doc"
+

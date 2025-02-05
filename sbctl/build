@@ -1,0 +1,16 @@
+#!/bin/sh -e 
+
+for i in *.patch ; do
+	patch -Np1 -i "$i"
+done
+
+make
+
+install -D -m755 -t "$1"/usr/bin \
+	sbctl
+
+tar xzvf sbctl-doc-0.16-r1.apk
+gzip --decompress usr/share/man/man8/sbctl.8.gz
+
+install -D -m644 -t "$1"/usr/share/man/man8 \
+	usr/share/man/man8/sbctl.8

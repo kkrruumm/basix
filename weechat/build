@@ -1,0 +1,20 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+cmake -B build -G Ninja \
+	-DCMAKE_INSTALL_PREFIX=/usr \
+	-DCMAKE_BUILD_TYPE=None \
+	-DENABLE_MAN=OFF \
+	-DENABLE_DOC=OFF \
+	-DENABLE_TCL=OFF \
+	-DENABLE_GUILE=OFF \
+	-DENABLE_JAVASCRIPT=OFF \
+	-DENABLE_PHP=OFF \
+	-DENABLE_SCRIPTS=OFF \
+	-DENABLE_SPELL=OFF \
+	-DENABLE_RUBY=OFF
+
+
+cmake --build build
+cmake --install build

@@ -1,0 +1,8 @@
+cmake
+samurai
+gnutls
+libgcrypt
+ncurses
+zlib
+zstd
+gettext

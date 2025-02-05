@@ -1,0 +1,7 @@
+https://github.com/Foxboron/sbctl/archive/refs/tags/0.16/sbctl-0.16.tar.gz
+# Pulling doc from alpine as opposed to dealing with packaging asciidoc and its deps
+# Storing locally incase repos get changed around, source:
+# https://dl-cdn.alpinelinux.org/alpine/edge/community/x86_64/sbctl-doc-0.16-r1.apk
+files/sbctl-doc-0.16-r1.apk
+# Remove depend on asciidoc
+patches/remove-asciidoc-dep.patch

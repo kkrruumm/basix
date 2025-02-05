@@ -1,0 +1,77 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+for i in *.patch ; do
+	patch -Np1 -i "$i"
+done
+
+meson setup \
+	${MESON_OPTIONS} \
+	-Dsbat-distro="kiss" \
+	-Dadm-group=false \
+	-Danalyze=false \
+	-Dbacklight=false \
+	-Dbinfmt=false \
+	-Dbootloader=enabled \
+	-Dcompat-mutable-uid-boundaries=false \
+	-Dcoredump=false \
+	-Ddns-over-tls=false \
+	-Defi=true \
+	-Denvironment-d=false \
+	-Dfexecve=false \
+	-Dfirstboot=false \
+	-Dfirst-boot-full-preset=false \
+	-Dgshadow=false \
+	-Dhibernate=false \
+	-Dhomed=disabled \
+	-Dhostnamed=false \
+	-Dhwdb=false \
+	-Didn=false \
+	-Dima=false \
+	-Dimportd=disabled \
+	-Dinitrd=false \
+	-Dkernel-install=false \
+	-Dldconfig=false \
+	-Dlocaled=false \
+	-Dlogind=false \
+	-Dmachined=false \
+	-Dnetworkd=false \
+	-Dnscd=false \
+	-Dnss-myhostname=false \
+	-Dnss-mymachines=disabled \
+	-Dnss-resolve=disabled \
+	-Dnss-systemd=false \
+	-Doomd=false \
+	-Dpolkit=disabled \
+	-Dportabled=false \
+	-Dpstore=false \
+	-Dquotacheck=false \
+	-Drandomseed=false \
+	-Dremote=disabled \
+	-Drepart=disabled \
+	-Dresolve=false \
+	-Drfkill=false \
+	-Dsmack=false \
+	-Dstoragetm=false \
+	-Dsysext=false \
+	-Dsysupdate=disabled \
+	-Dsysusers=false \
+	-Dtimedated=false \
+	-Dtimesyncd=false \
+	-Dtmpfiles=false \
+	-Dtpm=false \
+	-Dukify=disabled \
+	-Durlify=false \
+	-Duserdb=false \
+	-Dutmp=false \
+	-Dvconsole=false \
+	-Dvmspawn=disabled \
+	-Dwheel-group=false \
+	-Dxdg-autostart=false \
+	. output
+
+meson compile -C output systemd-boot
+
+install -Dm 644 -t "$1"/usr/lib/systemd/boot/efi \
+	output/src/boot/linuxx64.efi.stub

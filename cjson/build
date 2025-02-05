@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+cmake -B build -G Ninja \
+	-DCMAKE_INSTALL_PREFIX=/usr \
+	-DCMAKE_INSTALL_LIBDIR=lib \
+	-DBUILD_SHARED_AND_STATIC_LIBS=True \
+	-DCMAKE_BUILD_TYPE=MinSizeRel 
+
+cmake --build build
+
+cmake --build build --target install

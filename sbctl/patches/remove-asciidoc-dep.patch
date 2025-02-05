@@ -1,0 +1,12 @@
+--- a/Makefile
++++ b/Makefile
+@@ -20,9 +20,6 @@
+ man: $(MANS)
+ $(MANS):
+ 
+-docs/sbctl.%: docs/sbctl.%.txt docs/asciidoc.conf
+-	a2x --no-xmllint --asciidoc-opts="-f docs/asciidoc.conf" -d manpage -f manpage -D docs $<
+-
+ .PHONY: sbctl
+ sbctl:
+ 	go build -ldflags="-X github.com/foxboron/sbctl.Version=$(VERSION)" -o $@ ./cmd/$@
