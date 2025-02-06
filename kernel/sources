@@ -1,0 +1,4 @@
+https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.12.tar.xz
+# This config is pulled from Void Linux, and has been slightly modified.
+# Original source: https://github.com/void-linux/void-packages/blob/master/srcpkgs/linux6.12/files/x86_64-dotconfig
+files/x86_64-dotconfig

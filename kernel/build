@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+# Apply files/x86_64-dotconfig, pulled from Void. 
+mv x86_64-dotconfig .config
+
+yes "y" | make localyesconfig
+
+make
+
+install -Dm755 arch/x86/boot/bzImage "$1/boot/vmlinuz-$2_1"
+
+make INSTALL_MOD_STRIP=1 modules_install

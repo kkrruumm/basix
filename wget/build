@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+CFLAGS="$CFLAGS -flto=auto" \
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--with-ssl=openssl \
+		--disable-nls \
+		--with-libidn
+
+make
+make DESTDIR="$1" install
