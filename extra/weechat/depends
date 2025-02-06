@@ -6,3 +6,4 @@ ncurses
 zlib
 zstd
 gettext
+cjson
