@@ -1,0 +1,5 @@
+meson
+gtk+3
+gnome-desktop
+gsettings-desktop-schemas
+xdg-desktop-portal

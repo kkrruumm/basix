@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+meson \
+	${MESON_OPTIONS} \
+	-Db_lto=true \
+	. output
+
+meson compile -C output
+meson install --no-rebuild -C output
+
+rm -rf "$1"/usr/lib/systemd

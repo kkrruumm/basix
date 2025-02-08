@@ -1,0 +1,18 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+sed -e "/'test-.*'/d" meson.build > _
+mv -f _ meson.build
+
+meson setup \
+	${MESON_OPTIONS} \
+	-Dudev=enabled \
+	-Dinstalled_tests=false \
+	-Dgtk_doc=false \
+	-Ddesktop_docs=false \
+	-Dbuild_gtk4=false \
+	output
+
+ninja -C output
+ninja -C output install

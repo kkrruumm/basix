@@ -1,0 +1,10 @@
+gobject-introspection
+gsettings-desktop-schemas
+gtk+3
+iso-codes
+libseccomp
+meson
+pkgconf
+samurai
+xkeyboard-config
+glib

@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+: > tests/meson.build
+
+meson setup \
+	${MESON_OPTIONS} \
+	output
+
+ninja -C output
+ninja -C output install
