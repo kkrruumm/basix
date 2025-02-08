@@ -1,6 +1,5 @@
 # basic PAM configuration
-
-auth		include		base-auth
-account		include		base-account
-password	include		base-password
-session		include		base-session-noninteractive
+auth     include    base-auth
+account  include    base-account
+password include    base-password
+session  include    base-session-noninteractive
