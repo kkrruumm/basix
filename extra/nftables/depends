@@ -1,0 +1,9 @@
+flex
+gmp
+ncurses
+libmnl
+libnftnl
+python-gpep517
+python-setuptools
+python-wheel
+readline
