@@ -1,0 +1,38 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+for i in *.patch ; do
+	patch -p1 < "$i"
+done
+
+sed "/subdir('po/d" meson.build > _
+mv -f _ meson.build
+
+meson setup \
+	${MESON_OPTIONS} \
+	-Db_lto=true \
+	-Dcgroup-controller=elogind \
+	-Ddefault-hierarchy=unified \
+	-Ddefault-kill-user-processes=false \
+	-Dhalt-path=/sbin/halt \
+	-Dman=false \
+	-Dpolkit=true \
+	-Dreboot-path=/sbin/reboot \
+	-Dtests="$(want_check && echo true || echo false)" \
+	\
+	-Dpamconfdir=/etc/pam.d \
+	-Drootlibdir=/usr/lib \
+	-Drootlibexecdir=/usr/libexec/elogind \
+	-Dudevrulesdir=/usr/lib/udev/rules.d \
+	-Dsplit-usr=false \
+	build
+
+meson compile -C build
+meson install --no-rebuild -C build
+
+ln -s elogind       "$1/usr/include/systemd"
+ln -s libelogind.pc "$1/usr/lib/pkgconfig/libsystemd.pc"
+ln -s libelogind.pc "$1/usr/lib/pkgconfig/libsystemd-logind.pc"
+
+install -Dm755 elogind.run "$1/etc/sv/elogind/run"

@@ -1,0 +1,11 @@
+https://github.com/linux-pam/linux-pam/releases/download/v1.5.3/Linux-PAM-1.5.3.tar.xz
+patches/no-examples.patch
+files/base-account.pamd
+files/base-auth.pamd
+files/base-password.pamd
+files/base-session-noninteractive.pamd
+files/base-session.pamd
+files/other.pamd
+files/su.pamd
+files/system-local-login.pamd
+files/system-login.pamd

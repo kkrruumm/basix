@@ -1,0 +1,12 @@
+https://github.com/elogind/elogind/archive/v252.24/elogind-v252.24.tar.gz
+patches/posix-ln-realpath.patch
+patches/getdents.patch
+patches/gshadow.patch
+patches/more-strerror_r.patch
+patches/no-bash.patch
+patches/re-add_GNU_basename_macro_for_musl.patch
+patches/rlimit-util-no-cast.patch
+patches/sigfillset.patch
+patches/statx.patch
+patches/strerror_r.patch
+files/elogind.run
