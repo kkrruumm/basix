@@ -1,0 +1,32 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+for p in *.patch; do
+    patch -p1 < "$p"
+done
+
+# Don't enable native language support and don't compile schemas.
+sed -e '/compile_schemas/s/true/false/' \
+    -e '/ENABLE_NLS/s/1/0/' \
+    -e "/subdir('po/d" \
+    meson.build > _
+mv -f _ meson.build
+
+meson setup \
+    -Dprefix=/usr \
+    -Dx11_backend=false \
+    -Dwayland_backend=true \
+    -Dprint_backends=file,lpr \
+    -Dcolord=no \
+    -Ddemos=false \
+    -Dexamples=false \
+    -Dtests=false \
+    output
+
+ninja -C output
+meson install -C output
+
+# We don't compile with librsvg which leads to this utility solely causing
+# compiler errors for some packages. It has no use at all.
+rm -f "$1/usr/bin/gtk-encode-symbolic-svg"
