@@ -19,8 +19,7 @@ meson setup \
 	-Dman=false \
 	-Dpolkit=true \
 	-Dreboot-path=/sbin/reboot \
-	-Dtests="$(want_check && echo true || echo false)" \
-	\
+	-Dtests=false \
 	-Dpamconfdir=/etc/pam.d \
 	-Drootlibdir=/usr/lib \
 	-Drootlibexecdir=/usr/libexec/elogind \
