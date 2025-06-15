@@ -1,4 +1,0 @@
-#!/bin/sh -e
-
-install -Dm755 src/ukify/ukify.py \
-	"$1"/usr/sbin/ukify

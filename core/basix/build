@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+install -Dm755 buki \
+	"$1"/usr/sbin/buki
