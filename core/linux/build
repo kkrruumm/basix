@@ -1,9 +1,7 @@
 #!/bin/sh -e
 
-# Apply files/x86_64-dotconfig, pulled from Void. 
-mv x86_64-dotconfig .config
-
-yes "y" | make localyesconfig
+# Apply kernel config, pulled from Alpines LTS 
+mv lts.x86_64.config .config
 
 make
 

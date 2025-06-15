@@ -1,0 +1,4 @@
+https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.33.tar.xz
+# This config is pulled from Alpine Linux. 
+# Original source: https://gitlab.alpinelinux.org/alpine/aports/-/blob/3.22-stable/main/linux-lts/lts.x86_64.config 
+files/x86_64-dotconfig
